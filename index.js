@@ -1,6 +1,7 @@
 //--- Funcion que obtiene el carrito del LocalStorage, lo parsea a un array y lo retorna ---//
 function obtenerCarrito() {
     return JSON.parse(localStorage.getItem("carrito")) || [];
+
 }
 
 //--- Funcion que guarda el carrito recibido al LocalStorage, previamente transformado a string ---//
@@ -37,6 +38,15 @@ function sumarAlCarrito(e) {
 
     guardarCarrito(carrito);
     alert(`Un/una: ${nombre} fue agregado al carrito`);
+
+    /* - Captura el botón clickeado y encuentra su tarjeta contenedora usando .closest("li").
+      - Extrae el texto del nombre y el precio de ese producto
+      - Limpio el precio mediante un bucle, aislando solo los caracteres numéricos para quitar el '$' 
+        y convertirlo de texto a número con parseFloat()
+      - Trae el carrito actual del LocalStorage y usa .find() para chequear si el producto ya está guardado.
+      - Si ya existe, le incrementa la propiedad .cantidad en 1
+      - Si es nuevo, introduce un objeto con nombre, precio y cantidad inicial en 1 usando .push().
+      - Sincroniza el array actualizando el LocalStorage y muestra la alerta requerida */
 }
 
 function restarDelCarrito(e) {
@@ -69,6 +79,14 @@ function restarDelCarrito(e) {
         guardarCarrito(carrito);
         alert(`Un/una: ${nombre} fue eliminado del carrito`); 
     }
+
+    /*- Identifica el producto de la misma forma usando el selector .closest("li")
+      - Valida si el carrito está completamente vacío en LocalStorage para frenar la operación
+      - Utiliza .findIndex() para ubicar en que posición del array se encuentra el producto
+      - Resta una unidad en su propiedad .cantidad
+      - Evalua: Si la cantidad llega a 0, aplica un .filter() para generar un nuevo array donde 
+        se excluye por completo ese producto . Si la cantidad es mayor a 0, 
+        simplemente actualiza el almacenamiento local con el nuevo valor */
 }
 
 //--- [EVENTOS] Asociacion del evento "click" a los botones "+" y "-" ---//
