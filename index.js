@@ -39,14 +39,11 @@ function sumarAlCarrito(e) {
     guardarCarrito(carrito);
     alert(`Un/una: ${nombre} fue agregado al carrito`);
 
-    /* - Captura el botón clickeado y encuentra su tarjeta contenedora usando .closest("li").
-      - Extrae el texto del nombre y el precio de ese producto
-      - Limpio el precio mediante un bucle, aislando solo los caracteres numéricos para quitar el '$' 
-        y convertirlo de texto a número con parseFloat()
-      - Trae el carrito actual del LocalStorage y usa .find() para chequear si el producto ya está guardado.
-      - Si ya existe, le incrementa la propiedad .cantidad en 1
-      - Si es nuevo, introduce un objeto con nombre, precio y cantidad inicial en 1 usando .push().
-      - Sincroniza el array actualizando el LocalStorage y muestra la alerta requerida */
+    /* Sumar al carrito: Primero agarro la tarjeta con el closest, le saco el nombre y limpio 
+     el precio con un for para volarle el signo $ y pasarlo a número con parseFloat. 
+     Después busco con un .find() si ese producto ya estaba en el carrito. Si ya estaba, 
+     le sumo 1 a la cantidad. Si es nuevo, lo meto al array con cantidad 1 usando un push. 
+     Al final lo guardo en el storage y tiro el alert.*/
 }
 
 function restarDelCarrito(e) {
@@ -80,13 +77,10 @@ function restarDelCarrito(e) {
         alert(`Un/una: ${nombre} fue eliminado del carrito`); 
     }
 
-    /*- Identifica el producto de la misma forma usando el selector .closest("li")
-      - Valida si el carrito está completamente vacío en LocalStorage para frenar la operación
-      - Utiliza .findIndex() para ubicar en que posición del array se encuentra el producto
-      - Resta una unidad en su propiedad .cantidad
-      - Evalua: Si la cantidad llega a 0, aplica un .filter() para generar un nuevo array donde 
-        se excluye por completo ese producto . Si la cantidad es mayor a 0, 
-        simplemente actualiza el almacenamiento local con el nuevo valor */
+    /*Restar del carrito: Hago lo mismo para saber qué producto es. Si el carrito está vacío, 
+     freno ahí. Si no, busco la posición del producto con .findIndex() y le resto 1 a la cantidad. 
+     Si la cantidad llega a 0, uso un .filter() para borrarlo del todo del carrito. Si todavía 
+     quedan unidades, actualizo el storage y muestro el aviso. */
 }
 
 //--- [EVENTOS] Asociacion del evento "click" a los botones "+" y "-" ---//
